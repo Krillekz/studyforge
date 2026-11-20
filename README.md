@@ -1,114 +1,140 @@
-\# All-in-One AI Homework Helper (Web \& Dual Desktop Builds)
+# StudyForge
 
+**Every subject. Every question. Solved.**
 
+StudyForge is a homework workspace that runs entirely in your browser — one place to solve problems, write essays, check code, drill flashcards, cite sources and plan the week. It has no account, no server, and no subscription. You connect your own AI provider (or a local Ollama model) and the app talks to it directly.
 
-> \*\*Note to AI Builder:\*\* Follow all startup, design interview, and dual-`.exe` build instructions in `AGENTS.md` before writing code.
+- **Web app:** https://krillekz.github.io/studyforge/
+- **Windows app:** [StudyForge-Setup-1.0.0.exe](https://github.com/Krillekz/studyforge/releases/latest/download/StudyForge-Setup-1.0.0.exe)
 
+---
 
+## What it actually does
 
-\## Overview
+Twelve views, one shared history:
 
-An all-in-one academic assistant and homework helper designed to handle every part of a student's workflow. Users can type or paste homework questions, upload or screenshot worksheets for instant vision-based solving, and access 10 built-in study tools.
+| View | What it's for |
+| --- | --- |
+| **Omni-Solver** | Any subject — math, science, history, English, code. Type a question, paste a screenshot of a worksheet, or drop in a photo. |
+| **Essay writer** | Outline first, then draft with tone controls; polish a draft you already wrote. |
+| **Math suite** | Scientific calculator, step-by-step algebra solver, and a 2D function grapher. |
+| **Summarizer** | Turn readings or lecture notes into condensed study guides. |
+| **Flashcards & quiz** | Build a deck from a topic, your notes, or a photo of the page; then self-quiz. |
+| **Code debugger** | Paste broken Python/JS/Java/C++/HTML, get a fix plus an explanation of the bug. |
+| **Translate & grammar** | Translation with grammar, syntax and vocabulary corrections. |
+| **Citations** | APA, MLA and Chicago formatting with one-click copy. |
+| **Study planner** | Assignment tracker, deadlines, and a Pomodoro timer that remembers today's count. |
+| **Cheat sheets** | Formula library, full periodic table, grammar rules and history timelines — built in, offline. |
+| **History** | Everything you generated, saved locally, exportable to `.txt`, `.md`, or PDF via print. |
+| **Home** | Launcher, quick start, and a live demo of the solver. |
 
+Plus a **scratchpad** drawer for working, a **Ctrl+K command palette** to jump anywhere, and **global Ctrl+V** — paste a screenshot from anywhere in the app and it lands in the solver.
 
+## Why it's better than what's out there
 
-\### Deployment \& Executable Targets
+Most students end up with a pile of tabs: a general chatbot, a math app, a citation site, a flashcard site, a planner, a grammar checker. Each one wants an account, most want a subscription, and none of them know what you did five minutes ago in the other one.
 
-1\. \*\*GitHub Pages Website (`github.io`):\*\* Live static web app powered by user-supplied API keys (BYOK).
+**One workspace, not ten tabs.** The solver, writer, math suite, flashcards, citations and planner share one history and one visual language. A worksheet you photographed in the solver and the essay you drafted from it live in the same place.
 
-2\. \*\*Public User `.exe` (`dist-public/`):\*\* Standalone Electron desktop wrapper of the GitHub version, available for public download directly from the website.
+**You pay the model, not a middleman.** StudyForge has no credits and no monthly fee. Bring an OpenAI, Gemini, Anthropic or OpenRouter key and you're billed by the provider at their own rates — usually a fraction of what an "AI homework" subscription charges for the same model. Or point it at **Ollama** and pay nothing at all.
 
-3\. \*\*Private Local `.exe` (`dist-private/`):\*\* Personal local-only Electron build stored in a private git-ignored folder, pre-configured with \*\*Ollama\*\* as the default local AI engine.
+**Nothing is stored on someone else's server.** Requests go from your browser or desktop app straight to the provider you chose. API keys sit in your own `localStorage`. There is no StudyForge backend to log them, no account to create, and no email to hand over. This isn't a policy promise — there is simply no server in the middle.
 
+**It can run completely offline.** With Ollama installed locally, a whole homework session can happen without a single packet leaving the machine. No cloud study tool offers that.
 
+**It doesn't lose your work when the network hiccups.** Answers stream in, and every streaming tool has a visible **Stop** button. If you stop a run — or the connection drops — the partial answer stays on screen with a clear note that it's incomplete and wasn't saved, instead of the chat app failure mode of a blinking caret and a vanished response.
 
-\---
+**Vision without an upload step.** `Ctrl+V` anywhere in the app captures a clipboard screenshot and sends it to the solver. No file picker, no drag-and-drop detour, no "attach image" menu.
 
+**No build step, no framework, no tracking.** The web app is plain HTML, CSS and ES5-era JavaScript with zero runtime dependencies. It loads instantly, works on a school Chromebook, and can be self-hosted by copying a folder. The Windows app is the same code in an Electron shell — not a separate, worse product.
 
+### Compared to the obvious options
 
-\## Core Capabilities
+| | StudyForge | General AI chat (ChatGPT, Claude, Gemini) | Math apps (Photomath, Mathway) | Chegg | Quizlet |
+| --- | --- | --- | --- | --- | --- |
+| Cost | Your provider's price, at cost — or free with Ollama | Free tier or ~$20/mo | Free tier with upsells | Paid subscription | Free tier with ads/upsells |
+| Account required | No | Yes | Usually | Yes | Yes |
+| Subjects | All (text, math, science, code, writing) | All, but no study workflow | Math only | Broad, but answer-bank style | Flashcards only |
+| Screenshot solving | Yes, via paste | Yes | Yes | Yes | Limited |
+| Local / offline mode | Yes (Ollama) | No | No | No | No |
+| Where your data goes | Straight to your provider | Provider's servers | Their servers | Their servers | Their servers |
+| Built-in planner, citations, cheat sheets | Yes | No | No | No | No |
+| Desktop app included | Yes | Separate app | No | No | No |
 
-\* \*\*Text \& Code Problem Solving:\*\* Ask any question, paste math equations, or submit programming prompts for step-by-step explanations and complete answers.
+The honest summary: the underlying models are the same ones everyone else resells. What's different is the workflow around them, the fact that you own the key, and the fact that there's no company between you and the model.
 
-\* \*\*Image \& Screenshot Helper (Vision):\*\* Upload photos, drag-and-drop files, or press `Ctrl+V` anywhere to paste screenshots of textbook pages, handwritten problems, or diagrams for instant AI analysis.
+## Getting started
 
+### Use the web app
 
+Open https://krillekz.github.io/studyforge/, click **AI keys** in the header (the sliders icon, or press `Ctrl+K` and type "settings"), pick a provider and paste an API key. Then ask a question.
 
-\---
+### Install the Windows app
 
+Download [StudyForge-Setup-1.0.0.exe](https://github.com/Krillekz/studyforge/releases/latest/download/StudyForge-Setup-1.0.0.exe) and run it. The installer isn't code-signed, so SmartScreen may ask you to confirm — choose **More info → Run anyway**.
 
+### Use a local model
 
-\## The 10 Key Features
+Install [Ollama](https://ollama.com), pull a model, and allow the browser to reach it:
 
-1\. \*\*AI Homework Omni-Solver (Text \& Vision):\*\* Multi-subject problem solver supporting math, science, history, English, and coding with step-by-step breakdowns and image reading.
-
-2\. \*\*Essay \& Paper Writer:\*\* Full essay generator with outline creation, tone controls, citation integration, and readability polishing.
-
-3\. \*\*Math \& Graphing Calculator Suite:\*\* Scientific calculator, step-by-step algebra solver, and interactive 2D function grapher.
-
-4\. \*\*Smart Summarizer \& Note Condenser:\*\* Turns long readings, articles, or pasted lecture notes into clean bulleted study guides.
-
-5\. \*\*Flashcard \& Practice Quiz Generator:\*\* Converts any topic, pasted notes, or uploaded worksheet image into interactive flashcards and self-grading quizzes.
-
-6\. \*\*Code Debugger \& Explainer:\*\* Dedicated coding workspace for Python, JavaScript, Java, C++, and HTML/CSS to write, fix, and explain code.
-
-7\. \*\*Language Translator \& Grammar Checker:\*\* Multi-language translation paired with grammar, syntax, and vocabulary corrections.
-
-8\. \*\*Citation \& Bibliography Generator:\*\* Formats sources in APA, MLA, and Chicago styles with one-click copy.
-
-9\. \*\*Assignment \& Study Planner:\*\* Local task tracker, deadline organizer, and Pomodoro focus timer.
-
-10\. \*\*Quick-Reference Cheat Sheet Hub:\*\* Built-in math formulas, periodic table, grammar rules, and historical timelines.
-
-
-
-\---
-
-
-
-\## Smaller Utility Features
-
-\* \*\*Public Windows `.exe` Download Button:\*\* Direct link on the `.github.io` site to download the public Electron desktop app from GitHub Releases.
-
-\* \*\*BYOK \& Ollama Provider Manager:\*\* Settings panel to save cloud API keys locally or connect to a local Ollama instance, with separate text and vision model selectors.
-
-\* \*\*Local Session History \& Export:\*\* Auto-saves past homework chats locally with one-click export to `.txt`, `.md`, or `.pdf`.
-
-\* \*\*Quick Scratchpad Drawer:\*\* Slide-out notepad for rough calculations and notes while using any tool.
-
-\* \*\*Global Quick-Paste (`Ctrl+V`):\*\* Instantly captures clipboard screenshots into the image solver from anywhere in the app.
-
-
-
-\---
-
-
-
-\## Project Structure
-
-```text
-
-/
-
-├── AGENTS.md           # AI builder rules, interview questions, and dual-exe specs
-
-├── README.md           # Project overview and feature list
-
-├── .gitignore          # Excludes node\_modules/, dist-public/, and dist-private/
-
-├── index.html          # Main entry point (GitHub Pages \& Electron)
-
-├── styles/             # Modular CSS stylesheets
-
-├── scripts/            # Core logic, BYOK/Ollama API handlers, and the 10 tool modules
-
-├── electron/           # main.js and preload.js handling public vs. private build flags
-
-├── dist-public/        # Output folder for the public user .exe
-
-├── dist-private/       # Local-only output folder for your private Ollama-default .exe
-
-└── package.json        # Separate npm scripts for build:public and build:private
-
+```bash
+ollama pull llama3.2
+OLLAMA_ORIGINS=* ollama serve
 ```
 
+Then choose **Ollama (local)** in Settings. Vision needs a vision-capable model, e.g. `ollama pull llama3.2-vision`. The desktop app talks to `http://localhost:11434` by default.
+
+## Supported providers
+
+| Provider | Text default | Vision default |
+| --- | --- | --- |
+| OpenAI | `gpt-4o-mini` | `gpt-4o` |
+| Google Gemini | `gemini-2.0-flash` | `gemini-2.0-flash` |
+| Anthropic Claude | `claude-sonnet-4-20250514` | `claude-sonnet-4-20250514` |
+| OpenRouter | `openai/gpt-4o-mini` | `openai/gpt-4o` |
+| Ollama (local) | `llama3.2` | `llama3.2-vision` |
+
+Model names are editable in Settings, so new releases work without a code change.
+
+## Run it locally
+
+There's nothing to compile. Serve the folder over HTTP:
+
+```bash
+npm run dev          # http://127.0.0.1:5173
+```
+
+To build the Windows installer yourself:
+
+```bash
+npm install
+npm run build:public   # -> dist-public/StudyForge-Setup-1.0.0.exe
+```
+
+## How it's built
+
+- `index.html` + `styles/` + `scripts/` — the app; plain JavaScript, no framework, no bundler
+- `scripts/ai.js` — one streaming interface over four provider APIs plus Ollama, with abort and timeout handling
+- `scripts/tools/` — one module per study tool
+- `scripts/store.js` — `localStorage` persistence for settings, history, tasks, scratchpad
+- `electron/` — desktop shell (the Ollama-default private build uses `scripts/build.js --mode=private`)
+
+All paths are relative, which is what lets the same files run at `krillekz.github.io/studyforge/`, from a local folder, and inside Electron.
+
+## Privacy, plainly
+
+- No analytics, no telemetry, no third-party scripts.
+- API keys are stored in your device's `localStorage` and sent only to the provider you selected.
+- History and settings stay on your device; clearing site data deletes them.
+- The app has no backend, so there is nothing for the project to collect.
+
+## Limitations
+
+- You need an API key or a running local model. Nothing is bundled.
+- Provider browser access depends on their CORS rules; if a provider blocks direct browser calls, use the desktop app.
+- The Windows installer is unsigned, so SmartScreen warns on first run.
+- History and settings live in browser storage, so they don't sync between devices by design.
+
+## License
+
+No license has been added to this repository yet. Until one is, the code is published for viewing and personal use, and all rights are reserved.
