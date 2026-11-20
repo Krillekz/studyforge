@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Desktop build outputs
+dist-public/
+dist-private/
+.build/
+
+# Release artifacts
+*.blockmap
+*.7z
+*.dmg
+*.zip
+
+# Local config / secrets
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

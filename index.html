@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StudyForge — Every subject. Every question. Solved.</title>
+<meta name="description" content="StudyForge is an all-in-one AI homework helper: text and photo problem solving, essay writing, math and graphing, flashcards, code help, citations and more. Bring your own API key.">
+<meta name="theme-color" content="#0b0d13">
+<link rel="icon" href="./assets/icon.png">
+<link rel="stylesheet" href="./styles/main.css">
+<link rel="stylesheet" href="./styles/tools.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 2 4 13.2h6.1L9.4 22 20 10.4h-6.4z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.6 12 3l9 7.6V20a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.9 4.8L18.7 9.7l-4.8 1.9L12 16.4l-1.9-4.8L5.3 9.7l4.8-1.9z"/><path d="m18.5 15 .8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2.5"/><path d="M8 6h8M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 2H6.5A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22h11a2.5 2.5 0 0 0 2.5-2.5V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 12 10 5 10-5M2 17l10 5 10-5"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+  <symbol id="i-lang" viewBox="0 0 24 24"><path d="M4 5h9M8.5 3v2c0 4-2 7-4.5 8.5"/><path d="M6 10c1.2 2.3 3.2 4 5.5 5"/><path d="m14 21 4-10 4 10M15.6 17.5h4.8"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 3v5h5"/><path d="M3.05 13a9 9 0 1 0 2.13-5.66L3 8"/><path d="M12 7v5l4 2"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M5 21v-7M5 10V3M12 21v-9M12 8V3M19 21v-5M19 12V3"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="10" r="2"/><circle cx="19" cy="14" r="2"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2 12h2M20 12h2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.9A9 9 0 1 1 11.1 3a7 7 0 0 0 9.9 9.9z"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M11 4H4.5A2.5 2.5 0 0 0 2 6.5v13A2.5 2.5 0 0 0 4.5 22h13a2.5 2.5 0 0 0 2.5-2.5V13"/><path d="M18.4 2.6a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12.5" height="12.5" rx="2"/><path d="M5.5 15H4.5A2.5 2.5 0 0 1 2 12.5v-8A2.5 2.5 0 0 1 4.5 2h8A2.5 2.5 0 0 1 15 4.5v1"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14.5A1.5 1.5 0 0 1 16.5 22h-9A1.5 1.5 0 0 1 6 20.5L5 6"/><path d="M10 11v6M14 11v6"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7.5 20-4-8.5L2 9.5z"/><path d="M22 2 10.5 13.5"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="m21 15.5-5-5L5 21"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m20 6-11 11-5-5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="m7 4 13 8-13 8z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 4v16M15 4v16"/></symbol>
+  <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 2.6-6.4L3 8"/><path d="M3 3v5h5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+</svg>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#/home">
+      <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bolt"/></svg></span>
+      <span class="brand-text">
+        <strong>StudyForge</strong>
+        <small>AI homework helper</small>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <p class="nav-label">Workspace</p>
+      <a class="nav-item" href="#/home" data-page="home"><svg class="icon"><use href="#i-home"/></svg><span>Home</span></a>
+      <a class="nav-item" href="#/solver" data-page="solver"><svg class="icon"><use href="#i-sparkles"/></svg><span>Omni-Solver</span></a>
+      <a class="nav-item" href="#/history" data-page="history"><svg class="icon"><use href="#i-history"/></svg><span>History</span></a>
+
+      <p class="nav-label">Study tools</p>
+      <a class="nav-item" href="#/essay" data-page="essay"><svg class="icon"><use href="#i-pen"/></svg><span>Essay writer</span></a>
+      <a class="nav-item" href="#/math" data-page="math"><svg class="icon"><use href="#i-calc"/></svg><span>Math suite</span></a>
+      <a class="nav-item" href="#/summarize" data-page="summarize"><svg class="icon"><use href="#i-doc"/></svg><span>Summarizer</span></a>
+      <a class="nav-item" href="#/flashcards" data-page="flashcards"><svg class="icon"><use href="#i-layers"/></svg><span>Flashcards &amp; quiz</span></a>
+      <a class="nav-item" href="#/code" data-page="code"><svg class="icon"><use href="#i-code"/></svg><span>Code debugger</span></a>
+      <a class="nav-item" href="#/translate" data-page="translate"><svg class="icon"><use href="#i-lang"/></svg><span>Translate &amp; grammar</span></a>
+      <a class="nav-item" href="#/citations" data-page="citations"><svg class="icon"><use href="#i-quote"/></svg><span>Citations</span></a>
+      <a class="nav-item" href="#/planner" data-page="planner"><svg class="icon"><use href="#i-calendar"/></svg><span>Study planner</span></a>
+      <a class="nav-item" href="#/cheatsheet" data-page="cheatsheet"><svg class="icon"><use href="#i-book"/></svg><span>Cheat sheets</span></a>
+    </nav>
+
+    <div class="sidebar-foot">
+      <button class="btn ghost sm w-full" id="scratch-btn-2" type="button">
+        <svg class="icon"><use href="#i-edit"/></svg> Scratchpad
+      </button>
+      <div class="mode-row">
+        <span class="pill" id="mode-badge">Public · BYOK</span>
+        <span class="version">v1.0.0</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Toggle menu">
+        <svg class="icon"><use href="#i-menu"/></svg>
+      </button>
+      <span class="topbar-label" id="topbar-label">Home</span>
+      <div class="topbar-spacer"></div>
+      <button class="btn ghost sm palette-trigger" id="palette-btn" type="button" title="Search tools and actions (Ctrl+K)">
+        <svg class="icon"><use href="#i-search"/></svg><span class="btn-text">Search</span><kbd>Ctrl K</kbd>
+      </button>
+      <button class="btn ghost sm" id="scratch-btn" type="button">
+        <svg class="icon"><use href="#i-edit"/></svg><span class="btn-text">Scratchpad</span>
+      </button>
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="Toggle theme" title="Toggle light / dark">
+        <svg class="icon"><use href="#i-moon"/></svg>
+      </button>
+      <button class="btn outline sm" id="settings-btn" type="button">
+        <svg class="icon"><use href="#i-sliders"/></svg><span class="btn-text">AI keys</span>
+      </button>
+      <a class="btn primary sm download-link" id="download-btn" href="#" target="_blank" rel="noopener">
+        <svg class="icon"><use href="#i-download"/></svg><span class="btn-text">Download .exe</span>
+      </a>
+    </header>
+
+    <main id="view">
+
+      <!-- ============ HOME ============ -->
+      <section class="view" id="view-home" hidden>
+        <div class="hero">
+          <div class="hero-copy">
+            <span class="eyebrow"><svg class="icon"><use href="#i-sparkles"/></svg> Your all-in-one homework helper</span>
+            <h1>Every subject. Every question. <span class="grad">Solved.</span></h1>
+            <p class="hero-sub">Type a question, paste a math problem, or drop a photo of the worksheet. StudyForge walks you through the answer step by step — then helps you write, revise, revise again, and actually remember it.</p>
+            <div class="hero-actions">
+              <a class="btn primary lg" href="#/solver">Open the Omni-Solver <svg class="icon"><use href="#i-arrow"/></svg></a>
+              <a class="btn outline lg download-link" id="hero-download" href="#" target="_blank" rel="noopener">
+                <svg class="icon"><use href="#i-download"/></svg> Download for Windows (.exe)
+              </a>
+            </div>
+            <p class="hero-note">Bring your own API key. No account, no subscription, no StudyForge server — your questions go straight to the AI you choose.</p>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-glow"></div>
+            <div class="art-mark"><svg viewBox="0 0 24 24"><use href="#i-bolt"/></svg></div>
+            <span class="art-chip chip-1">Text &amp; photos</span>
+            <span class="art-chip chip-2">Step-by-step</span>
+            <span class="art-chip chip-3">10 study tools</span>
+            <span class="art-chip chip-4">100% local data</span>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <div class="demo-copy">
+            <span class="eyebrow"><svg class="icon"><use href="#i-play"/></svg> Sample output</span>
+            <h2>See the format before you add a key</h2>
+            <p>Pick a question and watch how StudyForge answers: every step shown, key facts named, nothing invented. These three answers are canned samples — no request leaves this page.</p>
+            <div class="demo-samples" id="demo-samples"></div>
+          </div>
+          <div class="demo-output" id="demo-output">
+            <p class="placeholder">Choose a sample question to see a full answer.</p>
+          </div>
+        </div>
+
+        <div class="section-head">
+          <h2>Pick a tool</h2>
+          <p>Ten modules, one workspace. Everything saves to this device.</p>
+        </div>
+
+        <div class="tool-grid">
+          <a class="tool-card" href="#/solver">
+            <span class="tool-icon i-indigo"><svg class="icon"><use href="#i-sparkles"/></svg></span>
+            <h3>AI Homework Omni-Solver</h3>
+            <p>Math, science, history, English and code — text or photo, with every step shown.</p>
+            <span class="tool-tag">Text + vision</span>
+          </a>
+          <a class="tool-card" href="#/essay">
+            <span class="tool-icon i-violet"><svg class="icon"><use href="#i-pen"/></svg></span>
+            <h3>Essay &amp; Paper Writer</h3>
+            <p>Outline, draft and polish with tone controls, length targets and citations.</p>
+            <span class="tool-tag">Outlines</span>
+          </a>
+          <a class="tool-card" href="#/math">
+            <span class="tool-icon i-cyan"><svg class="icon"><use href="#i-calc"/></svg></span>
+            <h3>Math &amp; Graphing Suite</h3>
+            <p>Scientific calculator, step-by-step algebra solver, and a live 2D function grapher.</p>
+            <span class="tool-tag">Graphing</span>
+          </a>
+          <a class="tool-card" href="#/summarize">
+            <span class="tool-icon i-emerald"><svg class="icon"><use href="#i-doc"/></svg></span>
+            <h3>Summarizer &amp; Condenser</h3>
+            <p>Turn chapters and lecture notes into tight study guides, TL;DRs and key terms.</p>
+            <span class="tool-tag">Notes</span>
+          </a>
+          <a class="tool-card" href="#/flashcards">
+            <span class="tool-icon i-amber"><svg class="icon"><use href="#i-layers"/></svg></span>
+            <h3>Flashcards &amp; Quiz</h3>
+            <p>Generate a deck from any topic or worksheet photo, then self-quiz with scoring.</p>
+            <span class="tool-tag">Active recall</span>
+          </a>
+          <a class="tool-card" href="#/code">
+            <span class="tool-icon i-rose"><svg class="icon"><use href="#i-code"/></svg></span>
+            <h3>Code Debugger &amp; Explainer</h3>
+            <p>Paste Python, JS, Java, C++ or HTML/CSS to fix bugs and get line-by-line explanations.</p>
+            <span class="tool-tag">Debug</span>
+          </a>
+          <a class="tool-card" href="#/translate">
+            <span class="tool-icon i-sky"><svg class="icon"><use href="#i-lang"/></svg></span>
+            <h3>Translate &amp; Grammar</h3>
+            <p>Multi-language translation plus grammar, syntax and vocabulary corrections.</p>
+            <span class="tool-tag">Languages</span>
+          </a>
+          <a class="tool-card" href="#/citations">
+            <span class="tool-icon i-indigo"><svg class="icon"><use href="#i-quote"/></svg></span>
+            <h3>Citation Generator</h3>
+            <p>APA, MLA and Chicago bibliographies, formatted instantly and copied in one click.</p>
+            <span class="tool-tag">APA · MLA · Chicago</span>
+          </a>
+          <a class="tool-card" href="#/planner">
+            <span class="tool-icon i-violet"><svg class="icon"><use href="#i-calendar"/></svg></span>
+            <h3>Assignment Planner</h3>
+            <p>Track deadlines by subject and priority, with a built-in Pomodoro focus timer.</p>
+            <span class="tool-tag">Pomodoro</span>
+          </a>
+          <a class="tool-card" href="#/cheatsheet">
+            <span class="tool-icon i-emerald"><svg class="icon"><use href="#i-book"/></svg></span>
+            <h3>Cheat Sheet Hub</h3>
+            <p>Formulas, the full periodic table, grammar rules and history timelines — offline.</p>
+            <span class="tool-tag">Offline</span>
+          </a>
+        </div>
+
+        <div class="home-strip">
+          <div>
+            <h3>Two ways to run StudyForge</h3>
+            <p>The website works in any browser with your API key. The Windows app does exactly the same thing, in its own window, with local file export.</p>
+          </div>
+          <a class="btn outline download-link" id="home-download-2" href="#" target="_blank" rel="noopener">
+            <svg class="icon"><use href="#i-download"/></svg> Get the desktop app
+          </a>
+        </div>
+      </section>
+
+      <!-- ============ OMNI-SOLVER ============ -->
+      <section class="view" id="view-solver" hidden>
+        <div class="page-head">
+          <div>
+            <h1>AI Homework Omni-Solver</h1>
+            <p>Type a question, paste a problem, or drop a photo of the worksheet.</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn ghost" id="solver-new" type="button">New conversation</button>
+          </div>
+        </div>
+
+        <div class="solver-grid">
+          <div class="card chat-card" id="solver-drop">
+            <div class="chat-log" id="solver-log"></div>
+            <div class="composer">
+              <div class="attach-strip" id="solver-attach-strip" hidden></div>
+              <textarea id="solver-input" class="composer-input" rows="3" placeholder="Example: Solve 3x² − 7x + 2 = 0 and show every step."></textarea>
+              <div class="composer-row">
+                <button class="btn ghost sm" id="solver-attach-btn" type="button">
+                  <svg class="icon"><use href="#i-image"/></svg> Attach image
+                </button>
+                <input type="file" id="solver-file" accept="image/*" multiple hidden>
+                <span class="hint" id="solver-hint">Ctrl+V pastes a screenshot</span>
+                <button class="btn primary" id="solver-send" type="button">
+                  Solve <svg class="icon"><use href="#i-send"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="card options-card">
+            <label class="field">
+              <span>Subject</span>
+              <select id="solver-subject">
+                <option>Auto-detect</option>
+                <option>Math</option>
+                <option>Physics</option>
+                <option>Chemistry</option>
+                <option>Biology</option>
+                <option>History</option>
+                <option>English / Literature</option>
+                <option>Computer science</option>
+                <option>Economics</option>
+                <option>Foreign language</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Answer style</span>
+              <select id="solver-style">
+                <option>Step-by-step</option>
+                <option>Short answer</option>
+                <option>Detailed walkthrough</option>
+                <option>Explain like I'm 12</option>
+                <option>Exam-style with rubric</option>
+              </select>
+            </label>
+            <div class="preset-row" data-presets="solver"></div>
+            <div class="mini-note">
+              <span>Connected model</span>
+              <strong id="solver-provider-label">Not set</strong>
+            </div>
+            <button class="btn outline w-full" id="solver-settings" type="button">
+              <svg class="icon"><use href="#i-sliders"/></svg> Change AI provider
+            </button>
+            <p class="hint">Conversations are saved to <a href="#/history">History</a> on this device only.</p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ ESSAY ============ -->
+      <section class="view" id="view-essay" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Essay &amp; Paper Writer</h1>
+            <p>Outline first, then draft, then polish — with tone and length you control.</p>
+          </div>
+        </div>
+        <div class="workspace-2">
+          <div class="card stack">
+            <label class="field">
+              <span>Prompt or assignment</span>
+              <textarea id="essay-prompt" rows="5" placeholder="e.g. Analyze how symbolism in The Great Gatsby critiques the American Dream."></textarea>
+            </label>
+            <div class="row-2">
+              <label class="field">
+                <span>Type</span>
+                <select id="essay-type">
+                  <option>Essay</option>
+                  <option>Research paper</option>
+                  <option>Short answer</option>
+                  <option>Paragraph response</option>
+                  <option>Speech / presentation</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Tone</span>
+                <select id="essay-tone">
+                  <option>Academic</option>
+                  <option>Persuasive</option>
+                  <option>Analytical</option>
+                  <option>Narrative</option>
+                  <option>Casual</option>
+                </select>
+              </label>
+            </div>
+            <div class="row-2">
+              <label class="field">
+                <span>Length</span>
+                <select id="essay-length">
+                  <option>~300 words</option>
+                  <option selected>~600 words</option>
+                  <option>~1000 words</option>
+                  <option>~1500 words</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Citation style</span>
+                <select id="essay-citation">
+                  <option>None</option>
+                  <option>APA</option>
+                  <option>MLA</option>
+                  <option>Chicago</option>
+                </select>
+              </label>
+            </div>
+            <label class="field">
+              <span>Notes / sources (optional)</span>
+              <textarea id="essay-notes" rows="3" placeholder="Key points, quotes, or sources to weave in."></textarea>
+            </label>
+            <div class="preset-row" data-presets="essay"></div>
+            <div class="btn-row">
+              <button class="btn outline" id="essay-outline-btn" type="button">Generate outline</button>
+              <button class="btn primary" id="essay-write-btn" type="button">Write draft</button>
+            </div>
+          </div>
+
+          <div class="card stack">
+            <div class="card-head">
+              <h2>Outline</h2>
+              <span class="hint">Edit before drafting if you want</span>
+            </div>
+            <textarea id="essay-outline" rows="7" class="mono-sm" placeholder="Your outline will appear here, and you can edit it."></textarea>
+            <div class="card-head">
+              <h2>Draft</h2>
+              <div class="btn-row">
+                <button class="btn ghost sm" id="essay-polish" type="button">Polish</button>
+                <button class="btn ghost sm" data-copy-target="essay-output" type="button">Copy</button>
+                <button class="btn ghost sm" id="essay-export" type="button">Export</button>
+              </div>
+            </div>
+            <div id="essay-output" class="output markdown"><p class="placeholder">Your essay will appear here.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MATH ============ -->
+      <section class="view" id="view-math" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Math &amp; Graphing Suite</h1>
+            <p>A real calculator, an algebra tutor, and a grapher that plots as you type.</p>
+          </div>
+        </div>
+        <div class="math-grid">
+          <div class="card stack">
+            <div class="card-head">
+              <h2>Scientific calculator</h2>
+              <div class="seg" id="calc-angle">
+                <button type="button" data-angle="deg" class="active">DEG</button>
+                <button type="button" data-angle="rad">RAD</button>
+              </div>
+            </div>
+            <div class="calc-display">
+              <input id="calc-expr" placeholder="2*(3+4)^2 / sqrt(16)" spellcheck="false" autocomplete="off">
+              <output id="calc-result">—</output>
+            </div>
+            <div class="calc-keys" id="calc-keys">
+              <button type="button" data-ins="sin(">sin</button>
+              <button type="button" data-ins="cos(">cos</button>
+              <button type="button" data-ins="tan(">tan</button>
+              <button type="button" data-ins="(">(</button>
+              <button type="button" data-ins=")">)</button>
+              <button type="button" data-ins="^">x^y</button>
+              <button type="button" data-ins="pi">π</button>
+              <button type="button" data-ins="e">e</button>
+              <button type="button" data-ins="sqrt(">√</button>
+              <button type="button" data-ins="log(">log</button>
+              <button type="button" data-ins="ln(">ln</button>
+              <button type="button" data-ins="!">n!</button>
+              <button type="button" data-ins="7">7</button>
+              <button type="button" data-ins="8">8</button>
+              <button type="button" data-ins="9">9</button>
+              <button type="button" data-ins="/">÷</button>
+              <button type="button" data-ins="%">%</button>
+              <button type="button" data-ins="4">4</button>
+              <button type="button" data-ins="5">5</button>
+              <button type="button" data-ins="6">6</button>
+              <button type="button" data-ins="*">×</button>
+              <button type="button" data-action="back">⌫</button>
+              <button type="button" data-ins="1">1</button>
+              <button type="button" data-ins="2">2</button>
+              <button type="button" data-ins="3">3</button>
+              <button type="button" data-ins="-">−</button>
+              <button type="button" data-action="clear">AC</button>
+              <button type="button" data-ins="0">0</button>
+              <button type="button" data-ins=".">.</button>
+              <button type="button" data-ins="+">+</button>
+              <button type="button" data-action="equals" class="key-eq">=</button>
+            </div>
+            <div>
+              <h3 class="mini-title">Recent</h3>
+              <ul class="calc-history" id="calc-history"></ul>
+            </div>
+          </div>
+
+          <div class="card stack">
+            <div class="card-head"><h2>Step-by-step algebra solver</h2></div>
+            <textarea id="algebra-input" rows="3" placeholder="Solve for x: 2x + 5 = 17" spellcheck="false"></textarea>
+            <div class="preset-row" data-presets="math"></div>
+            <button class="btn primary" id="algebra-solve" type="button">Solve step by step</button>
+            <div id="algebra-output" class="output markdown"><p class="placeholder">Every step will appear here.</p></div>
+          </div>
+
+          <div class="card stack grapher">
+            <div class="card-head">
+              <h2>Function grapher</h2>
+              <button class="btn ghost sm" id="graph-reset" type="button">
+                <svg class="icon"><use href="#i-rotate"/></svg> Reset view
+              </button>
+            </div>
+            <div class="graph-fns" id="graph-fns"></div>
+            <button class="btn ghost sm" id="graph-add" type="button">
+              <svg class="icon"><use href="#i-plus"/></svg> Add function
+            </button>
+            <div class="graph-wrap"><canvas id="graph-canvas"></canvas></div>
+            <div class="row-4">
+              <label class="field"><span>x min</span><input id="graph-xmin" type="number" value="-10" step="1"></label>
+              <label class="field"><span>x max</span><input id="graph-xmax" type="number" value="10" step="1"></label>
+              <label class="field"><span>y min</span><input id="graph-ymin" type="number" value="-10" step="1"></label>
+              <label class="field"><span>y max</span><input id="graph-ymax" type="number" value="10" step="1"></label>
+              <button class="btn outline sm" id="graph-apply" type="button">Apply</button>
+            </div>
+            <p class="hint">Drag to pan · scroll to zoom. Use <code>x</code> as the variable, e.g. <code>sin(x)/x</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SUMMARIZER ============ -->
+      <section class="view" id="view-summarize" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Smart Summarizer</h1>
+            <p>Paste a chapter, an article or your own messy notes and get a clean study guide back.</p>
+          </div>
+        </div>
+        <div class="workspace-2">
+          <div class="card stack">
+            <label class="field">
+              <span>Source text</span>
+              <textarea id="sum-input" rows="14" placeholder="Paste a chapter, article, or lecture notes here."></textarea>
+            </label>
+            <div class="row-2">
+              <label class="field">
+                <span>Output</span>
+                <select id="sum-format">
+                  <option>Bulleted study guide</option>
+                  <option>TL;DR</option>
+                  <option>Key terms &amp; definitions</option>
+                  <option>Cornell notes</option>
+                  <option>Likely exam questions</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Length</span>
+                <select id="sum-length">
+                  <option>Short</option>
+                  <option selected>Medium</option>
+                  <option>Detailed</option>
+                </select>
+              </label>
+            </div>
+            <div class="preset-row" data-presets="summarize"></div>
+            <div class="btn-row">
+              <button class="btn ghost" id="sum-paste" type="button">Paste from clipboard</button>
+              <button class="btn primary" id="sum-run" type="button">Summarize</button>
+            </div>
+          </div>
+          <div class="card stack">
+            <div class="card-head">
+              <h2>Condensed notes</h2>
+              <div class="btn-row">
+                <button class="btn ghost sm" data-copy-target="sum-output" type="button">Copy</button>
+                <button class="btn ghost sm" id="sum-export" type="button">Export</button>
+              </div>
+            </div>
+            <div id="sum-output" class="output markdown"><p class="placeholder">Your study guide will appear here.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FLASHCARDS ============ -->
+      <section class="view" id="view-flashcards" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Flashcards &amp; Practice Quiz</h1>
+            <p>Any topic or pasted notes become a deck and a self-grading quiz.</p>
+          </div>
+        </div>
+        <div class="workspace-2">
+          <div class="card stack">
+            <label class="field">
+              <span>Topic or notes</span>
+              <textarea id="fc-input" rows="7" placeholder="e.g. Causes and effects of the French Revolution — or paste your chapter notes."></textarea>
+            </label>
+            <div class="row-2">
+              <label class="field">
+                <span>Cards</span>
+                <select id="fc-count"><option>8</option><option selected>12</option><option>16</option><option>24</option></select>
+              </label>
+              <label class="field">
+                <span>Level</span>
+                <select id="fc-level"><option>High school</option><option selected>AP / College</option><option>Middle school</option></select>
+              </label>
+            </div>
+            <button class="btn primary" id="fc-generate" type="button">Generate deck + quiz</button>
+            <p class="hint" id="fc-status"></p>
+          </div>
+          <div class="card stack">
+            <div class="seg" id="fc-tabs">
+              <button type="button" data-tab="cards" class="active">Flashcards</button>
+              <button type="button" data-tab="quiz">Quiz</button>
+            </div>
+            <div id="fc-deck" class="fc-deck"><p class="placeholder">Generate a deck to start studying.</p></div>
+            <div id="fc-quiz" class="fc-quiz" hidden></div>
+            <div class="fc-controls" id="fc-controls" hidden>
+              <button class="btn ghost sm" id="fc-prev" type="button">← Prev</button>
+              <span class="hint" id="fc-pos">1 / 1</span>
+              <button class="btn ghost sm" id="fc-next" type="button">Next →</button>
+              <button class="btn ghost sm" id="fc-shuffle" type="button">Shuffle</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CODE ============ -->
+      <section class="view" id="view-code" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Code Debugger &amp; Explainer</h1>
+            <p>Paste the code that is fighting you and get a fix plus the reasoning.</p>
+          </div>
+        </div>
+        <div class="workspace-2">
+          <div class="card stack">
+            <div class="row-2">
+              <label class="field">
+                <span>Language</span>
+                <select id="code-lang">
+                  <option>Auto-detect</option>
+                  <option>Python</option>
+                  <option>JavaScript</option>
+                  <option>Java</option>
+                  <option>C++</option>
+                  <option>C#</option>
+                  <option>HTML / CSS</option>
+                  <option>SQL</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Task</span>
+                <select id="code-mode">
+                  <option>Debug &amp; fix</option>
+                  <option>Explain line by line</option>
+                  <option>Optimize</option>
+                  <option>Add comments</option>
+                  <option>Write tests</option>
+                </select>
+              </label>
+            </div>
+            <label class="field">
+              <span>Code</span>
+              <textarea id="code-input" class="code-editor" rows="14" spellcheck="false" placeholder="Paste your code here."></textarea>
+            </label>
+            <label class="field">
+              <span>Error message / what is wrong (optional)</span>
+              <textarea id="code-error" rows="2" placeholder="e.g. TypeError: 'int' object is not subscriptable"></textarea>
+            </label>
+            <div class="preset-row" data-presets="code"></div>
+            <button class="btn primary" id="code-run" type="button">Get help</button>
+          </div>
+          <div class="card stack">
+            <div class="card-head">
+              <h2>Fixed code &amp; explanation</h2>
+              <div class="btn-row">
+                <button class="btn ghost sm" data-copy-target="code-output" type="button">Copy</button>
+                <button class="btn ghost sm" id="code-export" type="button">Export</button>
+              </div>
+            </div>
+            <div id="code-output" class="output markdown"><p class="placeholder">The corrected code and a walkthrough will appear here.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TRANSLATE ============ -->
+      <section class="view" id="view-translate" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Translate &amp; Grammar Check</h1>
+            <p>Translation with the grammar notes your teacher actually wants.</p>
+          </div>
+        </div>
+        <div class="workspace-2">
+          <div class="card stack">
+            <div class="seg" id="tr-mode">
+              <button type="button" data-mode="translate" class="active">Translate</button>
+              <button type="button" data-mode="grammar">Grammar check</button>
+              <button type="button" data-mode="both">Both</button>
+            </div>
+            <div class="row-2">
+              <label class="field">
+                <span>From</span>
+                <select id="tr-from">
+                  <option>Auto-detect</option>
+                  <option>English</option>
+                  <option>Spanish</option>
+                  <option>French</option>
+                  <option>German</option>
+                  <option>Italian</option>
+                  <option>Portuguese</option>
+                  <option>Latin</option>
+                  <option>Chinese (Simplified)</option>
+                  <option>Japanese</option>
+                  <option>Korean</option>
+                  <option>Arabic</option>
+                  <option>Hindi</option>
+                  <option>Russian</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>To</span>
+                <select id="tr-to">
+                  <option>English</option>
+                  <option>Spanish</option>
+                  <option>French</option>
+                  <option>German</option>
+                  <option>Italian</option>
+                  <option>Portuguese</option>
+                  <option>Latin</option>
+                  <option>Chinese (Simplified)</option>
+                  <option>Japanese</option>
+                  <option>Korean</option>
+                  <option>Arabic</option>
+                  <option>Hindi</option>
+                  <option>Russian</option>
+                </select>
+              </label>
+            </div>
+            <label class="field">
+              <span>Text</span>
+              <textarea id="tr-input" rows="9" placeholder="Paste the text you want translated or corrected."></textarea>
+            </label>
+            <div class="preset-row" data-presets="translate"></div>
+            <button class="btn primary" id="tr-run" type="button">Run</button>
+          </div>
+          <div class="card stack">
+            <div class="card-head">
+              <h2>Result</h2>
+              <button class="btn ghost sm" data-copy-target="tr-output" type="button">Copy</button>
+            </div>
+            <div id="tr-output" class="output markdown"><p class="placeholder">The result will appear here.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CITATIONS ============ -->
+      <section class="view" id="view-citations" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Citation &amp; Bibliography Generator</h1>
+            <p>Fill in the source once, get APA, MLA or Chicago instantly — all formatted locally.</p>
+          </div>
+        </div>
+        <div class="workspace-2">
+          <div class="card stack">
+            <div class="row-2">
+              <label class="field">
+                <span>Source type</span>
+                <select id="cit-type">
+                  <option>Book</option>
+                  <option>Website</option>
+                  <option>Journal article</option>
+                  <option>News article</option>
+                  <option>Video</option>
+                  <option>Podcast</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Style</span>
+                <select id="cit-style">
+                  <option>APA 7th</option>
+                  <option>MLA 9th</option>
+                  <option>Chicago 17th</option>
+                </select>
+              </label>
+            </div>
+            <label class="field">
+              <span>Author(s)</span>
+              <input id="cit-author" placeholder="Last, First — separate multiple with ;">
+            </label>
+            <div class="row-2">
+              <label class="field"><span>Year</span><input id="cit-year" placeholder="2024"></label>
+              <label class="field"><span>Pages (optional)</span><input id="cit-pages" placeholder="45–67"></label>
+            </div>
+            <label class="field"><span>Title</span><input id="cit-title" placeholder="Title of the book, article or page"></label>
+            <div class="row-2">
+              <label class="field"><span>Publisher / site / journal</span><input id="cit-container" placeholder="Penguin Books / BBC News"></label>
+              <label class="field"><span>URL (optional)</span><input id="cit-url" placeholder="https://…"></label>
+            </div>
+            <label class="field"><span>Accessed date (optional)</span><input id="cit-accessed" type="date"></label>
+            <button class="btn primary" id="cit-add" type="button">Add citation</button>
+            <p class="hint">No AI call — formatting runs on this device, so it works offline in both desktop builds.</p>
+          </div>
+          <div class="card stack">
+            <div class="card-head">
+              <h2>Bibliography</h2>
+              <div class="btn-row">
+                <button class="btn ghost sm" id="cit-copy-all" type="button">Copy all</button>
+                <button class="btn ghost sm" id="cit-clear" type="button">Clear</button>
+              </div>
+            </div>
+            <div id="cit-list" class="cit-list"><p class="placeholder">Add a source to build your bibliography.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PLANNER ============ -->
+      <section class="view" id="view-planner" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Assignment &amp; Study Planner</h1>
+            <p>Deadlines by subject and priority, plus a Pomodoro timer to get them done.</p>
+          </div>
+        </div>
+        <div class="planner-grid">
+          <div class="card stack">
+            <div class="card-head"><h2>Add assignment</h2></div>
+            <label class="field"><span>Task</span><input id="pl-title" placeholder="Chapter 5 problem set"></label>
+            <div class="row-2">
+              <label class="field"><span>Subject</span><input id="pl-subject" placeholder="Math"></label>
+              <label class="field"><span>Due</span><input id="pl-due" type="date"></label>
+            </div>
+            <label class="field">
+              <span>Priority</span>
+              <select id="pl-priority"><option>Medium</option><option>High</option><option>Low</option></select>
+            </label>
+            <button class="btn primary" id="pl-add" type="button">Add task</button>
+
+            <div class="divider"></div>
+
+            <div class="card-head">
+              <h2>Pomodoro</h2>
+              <span class="pill" id="pomo-mode">Focus</span>
+            </div>
+            <div class="pomo-time" id="pomo-time">25:00</div>
+            <div class="progress"><i id="pomo-bar"></i></div>
+            <div class="btn-row">
+              <button class="btn primary sm" id="pomo-start" type="button"><svg class="icon"><use href="#i-play"/></svg> Start</button>
+              <button class="btn ghost sm" id="pomo-reset" type="button">Reset</button>
+              <button class="btn ghost sm" id="pomo-skip" type="button">Break</button>
+            </div>
+            <p class="hint">Focus sessions completed: <strong id="pomo-count">0</strong></p>
+          </div>
+
+          <div class="card stack">
+            <div class="card-head">
+              <h2>Your list</h2>
+              <div class="seg" id="pl-filter">
+                <button type="button" data-filter="open" class="active">Open</button>
+                <button type="button" data-filter="done">Done</button>
+                <button type="button" data-filter="all">All</button>
+              </div>
+            </div>
+            <div class="pl-stats" id="pl-stats"></div>
+            <ul class="task-list" id="pl-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CHEAT SHEETS ============ -->
+      <section class="view" id="view-cheatsheet" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Quick-Reference Cheat Sheet Hub</h1>
+            <p>Formulas, elements, grammar and timelines — all bundled, no network needed.</p>
+          </div>
+        </div>
+        <div class="seg big" id="cs-tabs">
+          <button type="button" data-tab="formulas" class="active">Math formulas</button>
+          <button type="button" data-tab="periodic">Periodic table</button>
+          <button type="button" data-tab="grammar">Grammar rules</button>
+          <button type="button" data-tab="timeline">Historical timeline</button>
+        </div>
+        <div class="card">
+          <div id="cs-formulas" class="cs-panel"></div>
+          <div id="cs-periodic" class="cs-panel" hidden>
+            <div class="search-wrap">
+              <svg class="icon"><use href="#i-search"/></svg>
+              <input id="cs-search" placeholder="Search element, symbol or number">
+            </div>
+            <div id="elem-grid" class="elem-grid"></div>
+          </div>
+          <div id="cs-grammar" class="cs-panel" hidden></div>
+          <div id="cs-timeline" class="cs-panel" hidden></div>
+        </div>
+      </section>
+
+      <!-- ============ HISTORY ============ -->
+      <section class="view" id="view-history" hidden>
+        <div class="page-head">
+          <div>
+            <h1>History</h1>
+            <p>Every session, stored only on this device. Export any of them as .txt, .md or .pdf.</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn ghost" id="hist-clear" type="button">Clear all</button>
+          </div>
+        </div>
+        <div id="hist-detail" class="card stack" hidden></div>
+        <div id="hist-list" class="hist-list"></div>
+      </section>
+
+      <footer class="site-foot">
+        <span>StudyForge v1.0.0</span>
+        <span>Runs entirely on this device. Your keys never touch a StudyForge server.</span>
+        <span id="foot-mode"></span>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<!-- ============ SETTINGS MODAL ============ -->
+<div class="modal" id="settings-modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <div class="modal-head">
+      <h2 id="settings-title">AI settings</h2>
+      <button class="icon-btn" type="button" data-close="settings-modal" aria-label="Close">
+        <svg class="icon"><use href="#i-x"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p class="hint">Keys are stored in this browser/app only, and sent straight to the provider you choose. There is no StudyForge server.</p>
+
+      <label class="field">
+        <span>Active provider</span>
+        <select id="set-provider">
+          <option value="openai">OpenAI</option>
+          <option value="gemini">Google Gemini</option>
+          <option value="anthropic">Anthropic Claude</option>
+          <option value="openrouter">OpenRouter</option>
+          <option value="ollama">Ollama (local)</option>
+        </select>
+      </label>
+
+      <div class="tabs" id="prov-tabs">
+        <button type="button" data-prov="openai" class="active">OpenAI</button>
+        <button type="button" data-prov="gemini">Gemini</button>
+        <button type="button" data-prov="anthropic">Claude</button>
+        <button type="button" data-prov="openrouter">OpenRouter</button>
+        <button type="button" data-prov="ollama">Ollama</button>
+      </div>
+
+      <div class="prov-panel" data-panel="openai">
+        <label class="field"><span>API key</span><input type="password" data-key="openai" placeholder="sk-…" autocomplete="off"></label>
+        <div class="row-2">
+          <label class="field"><span>Text model</span><input data-model="openai" spellcheck="false"></label>
+          <label class="field"><span>Vision model</span><input data-vision="openai" spellcheck="false"></label>
+        </div>
+        <p class="hint">Create a key at <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com/api-keys</a>.</p>
+      </div>
+
+      <div class="prov-panel" data-panel="gemini" hidden>
+        <label class="field"><span>API key</span><input type="password" data-key="gemini" placeholder="AIza…" autocomplete="off"></label>
+        <div class="row-2">
+          <label class="field"><span>Text model</span><input data-model="gemini" spellcheck="false"></label>
+          <label class="field"><span>Vision model</span><input data-vision="gemini" spellcheck="false"></label>
+        </div>
+        <p class="hint">Free keys at <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">aistudio.google.com/app/apikey</a>.</p>
+      </div>
+
+      <div class="prov-panel" data-panel="anthropic" hidden>
+        <label class="field"><span>API key</span><input type="password" data-key="anthropic" placeholder="sk-ant-…" autocomplete="off"></label>
+        <div class="row-2">
+          <label class="field"><span>Text model</span><input data-model="anthropic" spellcheck="false"></label>
+          <label class="field"><span>Vision model</span><input data-vision="anthropic" spellcheck="false"></label>
+        </div>
+        <p class="hint">Keys at <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a>. Browser access is enabled for you.</p>
+      </div>
+
+      <div class="prov-panel" data-panel="openrouter" hidden>
+        <label class="field"><span>API key</span><input type="password" data-key="openrouter" placeholder="sk-or-v1-…" autocomplete="off"></label>
+        <div class="row-2">
+          <label class="field"><span>Text model</span><input data-model="openrouter" spellcheck="false"></label>
+          <label class="field"><span>Vision model</span><input data-vision="openrouter" spellcheck="false"></label>
+        </div>
+        <p class="hint">Keys at <a href="https://openrouter.ai/keys" target="_blank" rel="noopener">openrouter.ai/keys</a> — one key for most models, including free ones.</p>
+      </div>
+
+      <div class="prov-panel" data-panel="ollama" hidden>
+        <label class="field"><span>Ollama base URL</span><input id="ollama-base" spellcheck="false" placeholder="http://localhost:11434"></label>
+        <div class="row-2">
+          <label class="field"><span>Text model</span><input data-model="ollama" spellcheck="false"></label>
+          <label class="field"><span>Vision model</span><input data-vision="ollama" spellcheck="false"></label>
+        </div>
+        <p class="hint">Run <code>ollama pull llama3.2</code> and <code>ollama pull llama3.2-vision</code>. For the browser version, start Ollama with <code>OLLAMA_ORIGINS=*</code> so it accepts local web origins. The desktop app needs no extra setup.</p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn outline" id="set-test" type="button">Test connection</button>
+        <span class="hint" id="set-test-result"></span>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn ghost" type="button" data-close="settings-modal">Cancel</button>
+      <button class="btn primary" id="set-save" type="button">Save settings</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCRATCHPAD DRAWER ============ -->
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="scratch-drawer" hidden aria-label="Scratchpad">
+  <div class="drawer-head">
+    <h2><svg class="icon"><use href="#i-edit"/></svg> Scratchpad</h2>
+    <button class="icon-btn" type="button" id="scratch-close" aria-label="Close scratchpad">
+      <svg class="icon"><use href="#i-x"/></svg>
+    </button>
+  </div>
+  <textarea id="scratch-text" placeholder="Rough work, half-finished thoughts, numbers you do not want to lose…"></textarea>
+  <div class="drawer-foot">
+    <span class="hint">Saved automatically on this device.</span>
+    <button class="btn ghost sm" id="scratch-clear" type="button">Clear</button>
+  </div>
+</aside>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<noscript><p style="padding:24px">StudyForge needs JavaScript enabled to run.</p></noscript>
+
+<script src="./scripts/config.js"></script>
+<script src="./scripts/store.js"></script>
+<script src="./scripts/ui.js"></script>
+<script src="./scripts/ai.js"></script>
+<script src="./scripts/export.js"></script>
+<script src="./scripts/presets.js"></script>
+<script src="./scripts/palette.js"></script>
+<script src="./scripts/demo.js"></script>
+<script src="./scripts/tools/omnisolver.js"></script>
+<script src="./scripts/tools/essay.js"></script>
+<script src="./scripts/tools/math.js"></script>
+<script src="./scripts/tools/summarize.js"></script>
+<script src="./scripts/tools/flashcards.js"></script>
+<script src="./scripts/tools/code.js"></script>
+<script src="./scripts/tools/translate.js"></script>
+<script src="./scripts/tools/citations.js"></script>
+<script src="./scripts/tools/planner.js"></script>
+<script src="./scripts/tools/cheatsheet.js"></script>
+<script src="./scripts/app.js"></script>
+</body>
+</html>
